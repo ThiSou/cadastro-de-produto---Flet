@@ -4,10 +4,10 @@ import mysql.connector
 class Gerenciador:
     def __init__(self):
         self.conect = mysql.connector.connect(
-            host="",
-            user="",
-            password="",
-            database=""
+            host="127.0.0.1",
+            user="root",
+            password="Th16092003",
+            database="ADM_mercadinho"
         )
         self.cursor = self.conect.cursor()
 
@@ -31,9 +31,13 @@ class Gerenciador:
     def buscar_produto(self,nome):
         self.cursor.execute(""" SELECT * FROM estoque_produtos WHERE nome_produto = %s""",(nome,))
         produtos = self.cursor.fetchone()
-        return produtos
+        if produtos != None:
+            return produtos
+        else:
+            return None
     
 
 gerenciador = Gerenciador()
+
 
 
